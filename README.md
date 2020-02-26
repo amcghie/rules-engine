@@ -42,7 +42,7 @@ RuleBook<String, String> ruleBook = RuleBook.newInstance(String.class, String.cl
 ```
 To execute the RuleBook:
 ```java
-String result = new SimpleRuleExecutor<>(megaBankRuleBook)
+String result = new SimpleRuleExecutor<>(ruleBook)
         .execute("World");
 
 assertThat(result).isEqualTo("Hello World");
