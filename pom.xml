@@ -10,7 +10,7 @@
 
     <modules>
         <module>rules-engine-core</module>
-        <module>examples/hmrc-tax</module>
+        <module>examples/rules-engine-examples-hmrc-tax</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>
