@@ -13,7 +13,6 @@
 
     <groupId>au.com.agilepractices.rules.engine.examples</groupId>
     <artifactId>rules-engine-examples-hmrc-tax</artifactId>
-    <name>examples - hmrc-tax</name>
 
     <dependencies>
         <dependency>
