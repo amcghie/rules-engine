@@ -3,7 +3,7 @@
     <parent>
         <groupId>au.com.agilepractices.rules.engine</groupId>
         <artifactId>rules-engine</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>au.com.agilepractices.rules.engine</groupId>
             <artifactId>rules-engine-core</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
