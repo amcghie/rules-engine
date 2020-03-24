@@ -6,6 +6,24 @@
     <packaging>pom</packaging>
     <version>1.0.1-SNAPSHOT</version>
 
+    <name>Rules Engine</name>
+    <description>A simple rules library written in Java</description>
+    <url>https://github.com/amcghie/rules-engine</url>
+
+    <licenses>
+        <license>
+            <name>The MIT License</name>
+            <url>https://raw.githubusercontent.com/amcghie/rules-engine/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Andrew McGhie</name>
+        </developer>
+    </developers>
+
     <modules>
         <module>rules-engine-core</module>
         <module>examples/rules-engine-examples-hmrc-tax</module>
