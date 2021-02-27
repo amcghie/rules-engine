@@ -51,9 +51,9 @@ public class LoggingRuleAuditor<D> implements RuleAuditor<D> {
     @Override
     public boolean withResult(Condition<D> condition, boolean result) {
         if (ruleName == null) {
-            logger.info("Evaluating: {}={}", condition.getName(), result);
+            logger.info("Evaluating Condition: {}, result={}", condition.getName(), result);
         } else {
-            logger.info("{}: Evaluating: {}={}", ruleName, condition.getName(), result);
+            logger.info("{}: Evaluating Condition: {}, result={}", ruleName, condition.getName(), result);
         }
         delegate.withResult(condition, result);
         return result;
@@ -62,9 +62,9 @@ public class LoggingRuleAuditor<D> implements RuleAuditor<D> {
     @Override
     public <R> Action<D, R> withAction(Action<D, R> action) {
         if (ruleName == null) {
-            logger.info("Executing: {}", action.getName());
+            logger.info("Executing Action: {}", action.getName());
         } else {
-            logger.info("{}: Executing: {}", ruleName, action.getName());
+            logger.info("{}: Executing Action: {}", ruleName, action.getName());
         }
         return delegate.withAction(action);
     }

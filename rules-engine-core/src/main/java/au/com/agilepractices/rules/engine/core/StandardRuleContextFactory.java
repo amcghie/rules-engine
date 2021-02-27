@@ -23,9 +23,10 @@ public class StandardRuleContextFactory<D, R> implements RuleContextFactory<D, R
         if (data != null) {
             ruleAuditor.withData("data", data);
         }
-        if (ruleBook.getDefaultResult() != null) {
-            ruleAuditor.withData("defaultResult", ruleBook.getDefaultResult());
+        final R defaultResult = ruleBook.getDefaultResult(data);
+        if (defaultResult != null) {
+            ruleAuditor.withData("defaultResult", defaultResult);
         }
-        return new StandardRuleContext<>(ruleAuditor, data, ruleBook.getDefaultResult());
+        return new StandardRuleContext<>(ruleAuditor, data, defaultResult);
     }
 }

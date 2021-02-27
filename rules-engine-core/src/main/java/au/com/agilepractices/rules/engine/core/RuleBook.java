@@ -3,16 +3,18 @@ package au.com.agilepractices.rules.engine.core;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 public class RuleBook<D, R> {
 
     private final List<Rule<D, R>> rules;
     private final RuleContextFactory<D, R> ruleContextFactory;
-    private R defaultResult;
+    private Function<D, R> defaultResultFactory;
 
     protected RuleBook(final List<Rule<D, R>> rules, final RuleContextFactory<D, R> ruleContextFactory) {
         this.rules = rules;
         this.ruleContextFactory = ruleContextFactory;
+        this.defaultResultFactory = it -> null;
     }
 
     public static <D, R> RuleBook<D, R> newInstance() {
@@ -40,12 +42,16 @@ public class RuleBook<D, R> {
         return Collections.unmodifiableList(rules);
     }
 
-    public R getDefaultResult() {
-        return defaultResult;
+    public R getDefaultResult(D data) {
+        return defaultResultFactory.apply(data);
     }
 
     public RuleBook<D, R> withDefaultResult(R defaultResult) {
-        this.defaultResult = defaultResult;
+        return withDefaultResult(it -> defaultResult);
+    }
+
+    public RuleBook<D, R> withDefaultResult(Function<D, R> defaultResultFactory) {
+        this.defaultResultFactory = defaultResultFactory;
         return this;
     }
 

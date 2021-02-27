@@ -18,7 +18,7 @@ dependencies {
 }
 ```
 A rule consists of:
-* A Condition - which must evaluate to true of false
+* A Condition - which must evaluate to `true` or `false`
 * An Action - which is executed if the Condition evaluates to `true`
 * An optional alternative Action - which is executed if the Condition evaluates to `false`
 

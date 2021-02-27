@@ -6,6 +6,16 @@ import au.com.agilepractices.rules.engine.core.condition.Condition;
 
 import java.util.Objects;
 
+/**
+ * A Rule consists of:
+ * <ul>
+ *   <li>A {@link Condition} - which must evaluate to <pre>true</pre> or <pre>false</pre></li>
+     <li>An {@link Action} - which is executed if the Condition evaluates to <pre>true</pre></li>
+ *   <li>An optional alternative {@link Action} - which is executed if the Condition evaluates to <pre>false</pre></li>
+ * </ul>
+ * @param <D> - Type of the data object
+ * @param <R> - Return type
+ */
 public class Rule<D, R> {
 
     private final String name;

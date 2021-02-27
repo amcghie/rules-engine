@@ -71,7 +71,7 @@ public class LoggingRuleAuditorTest {
         assertTrue(underTest.withResult(condition, true));
 
         verify(delegate).withResult(condition, true);
-        verify(logger).info("Evaluating: {}={}", "some-condition", true);
+        verify(logger).info("Evaluating Condition: {}, result={}", "some-condition", true);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class LoggingRuleAuditorTest {
 
         assertTrue(underTest.withResult(condition, true));
         verify(delegate).withResult(condition, true);
-        verify(logger).info("{}: Evaluating: {}={}", "RuleName", "some-condition", true);
+        verify(logger).info("{}: Evaluating Condition: {}, result={}", "RuleName", "some-condition", true);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class LoggingRuleAuditorTest {
         assertSame(action, underTest.withAction(action));
 
         verify(delegate).withAction(action);
-        verify(logger).info("Executing: {}", "ActionName");
+        verify(logger).info("Executing Action: {}", "ActionName");
     }
 
     @Test
@@ -104,6 +104,6 @@ public class LoggingRuleAuditorTest {
         assertSame(action, underTest.withAction(action));
 
         verify(delegate).withAction(action);
-        verify(logger).info("{}: Executing: {}", "RuleName", "ActionName");
+        verify(logger).info("{}: Executing Action: {}", "RuleName", "ActionName");
     }
 }
