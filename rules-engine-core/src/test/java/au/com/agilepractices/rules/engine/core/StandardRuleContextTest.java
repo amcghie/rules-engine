@@ -1,24 +1,20 @@
 package au.com.agilepractices.rules.engine.core;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
 import au.com.agilepractices.rules.engine.core.auditor.RuleAuditor;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class StandardRuleContextTest {
 
-    @Rule
-    public final MockitoRule mockitoRule = MockitoJUnit.rule();
-    @Rule
-    public final ExpectedException expectedException = ExpectedException.none();
     @Mock
     private RuleAuditor<String> ruleAuditor;
 
@@ -42,11 +38,13 @@ public class StandardRuleContextTest {
 
     @Test
     public void testSetStateCannotBeNull() {
-        expectedException.expect(NullPointerException.class);
-        expectedException.expectMessage("ExecutionState cannot be null");
         final StandardRuleContext<String, Boolean> underTest = createStandardRuleContext();
 
-        underTest.setState(null);
+        assertThrows(
+                NullPointerException.class,
+                () -> underTest.setState(null),
+                "ExecutionState cannot be null"
+        );
     }
 
     @Test

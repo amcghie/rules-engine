@@ -1,32 +1,29 @@
 package au.com.agilepractices.rules.engine.core.condition;
 
 import au.com.agilepractices.rules.engine.core.auditor.RuleAuditor;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
-import org.mockito.quality.Strictness;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class OrConditionTest {
 
     private static final String VALUE = "Foo";
 
-    @Rule
-    public MockitoRule mockitoRule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
     @Mock
     private Condition<String> condition1;
     @Mock
@@ -36,7 +33,7 @@ public class OrConditionTest {
 
     private OrCondition<String> underTest;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         underTest = new OrCondition<>(Arrays.asList(condition1, condition2));
     }
@@ -55,7 +52,7 @@ public class OrConditionTest {
         assertThat(underTest.test(VALUE, ruleAuditor)).isTrue();
 
         verify(condition1).test(VALUE, ruleAuditor);
-        verifyZeroInteractions(condition2);
+        verifyNoInteractions(condition2);
         verify(ruleAuditor).withResult(condition1, true);
         verify(ruleAuditor).withResult(underTest, true);
         verifyNoMoreInteractions(ruleAuditor);
@@ -90,7 +87,7 @@ public class OrConditionTest {
         verify(ruleAuditor).withResult(condition1, false);
         verify(ruleAuditor).withResult(condition2, false);
         verify(ruleAuditor).withResult(underTest, false);
-        verifyZeroInteractions(condition2);
+        verifyNoMoreInteractions(ruleAuditor);
     }
 
     @Test

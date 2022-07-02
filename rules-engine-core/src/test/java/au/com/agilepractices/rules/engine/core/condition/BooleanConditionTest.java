@@ -1,26 +1,23 @@
 package au.com.agilepractices.rules.engine.core.condition;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
-import org.mockito.quality.Strictness;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import au.com.agilepractices.rules.engine.core.auditor.RuleAuditor;
 
+@ExtendWith(MockitoExtension.class)
 public class BooleanConditionTest {
 
-    @Rule
-    public MockitoRule mockitoRule = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
     @Mock
     private RuleAuditor<Object> ruleAuditor;
 
@@ -32,8 +29,8 @@ public class BooleanConditionTest {
 
         assertThat(underTest.test(fact, ruleAuditor)).isTrue();
 
-        verifyZeroInteractions(fact);
-        verifyZeroInteractions(ruleAuditor);
+        verifyNoInteractions(fact);
+        verifyNoInteractions(ruleAuditor);
     }
 
     @Test

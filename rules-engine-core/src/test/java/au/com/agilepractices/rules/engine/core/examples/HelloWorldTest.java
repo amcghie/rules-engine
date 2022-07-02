@@ -2,19 +2,14 @@ package au.com.agilepractices.rules.engine.core.examples;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Test;
-
 import au.com.agilepractices.rules.engine.core.RuleBook;
 import au.com.agilepractices.rules.engine.core.StandardRuleContextFactory;
 import au.com.agilepractices.rules.engine.core.auditor.LoggingRuleAuditor;
-import au.com.agilepractices.rules.engine.core.auditor.RuleAuditor;
-import au.com.agilepractices.rules.engine.core.condition.BooleanCondition;
-import au.com.agilepractices.rules.engine.core.condition.Condition;
-
+import org.junit.jupiter.api.Test;
 
 public class HelloWorldTest {
 
-    private RuleBook<Void, String> ruleBook = RuleBook.newInstance(new StandardRuleContextFactory<>(LoggingRuleAuditor::new));
+    private final RuleBook<Void, String> ruleBook = RuleBook.newInstance(new StandardRuleContextFactory<>(LoggingRuleAuditor::new));
 
     @Test
     public void helloWorldTest() {

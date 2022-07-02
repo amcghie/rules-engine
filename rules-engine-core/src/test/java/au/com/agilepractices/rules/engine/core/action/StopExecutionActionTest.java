@@ -1,21 +1,19 @@
 package au.com.agilepractices.rules.engine.core.action;
 
 import au.com.agilepractices.rules.engine.core.RuleContext;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 
+@ExtendWith(MockitoExtension.class)
 public class StopExecutionActionTest {
 
     private final StopExecutionAction<Void, Void> underTest = new StopExecutionAction<>();
 
-    @Rule
-    public MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock
     private RuleContext<Void, Void> ruleContext;
 

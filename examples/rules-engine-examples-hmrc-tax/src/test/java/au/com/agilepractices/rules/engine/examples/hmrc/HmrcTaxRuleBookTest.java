@@ -5,8 +5,7 @@ import au.com.agilepractices.rules.engine.core.SimpleRuleExecutor;
 import au.com.agilepractices.rules.engine.core.StandardRuleContextFactory;
 import au.com.agilepractices.rules.engine.core.action.Action;
 import au.com.agilepractices.rules.engine.core.auditor.LoggingRuleAuditor;
-import au.com.agilepractices.rules.engine.examples.hmrc.AnnualSalary;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static au.com.agilepractices.rules.engine.examples.hmrc.AnnualSalaryCondition.annualEarningsOver;

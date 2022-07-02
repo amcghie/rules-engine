@@ -1,23 +1,19 @@
 package au.com.agilepractices.rules.engine.core.action;
 
-import static org.junit.Assert.assertEquals;
+import au.com.agilepractices.rules.engine.core.RuleContext;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
-
-import au.com.agilepractices.rules.engine.core.RuleContext;
-
+@ExtendWith(MockitoExtension.class)
 public class ActionTest {
 
-    @Rule
-    public MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock
     private RuleContext<String, Double> ruleContext;
-
 
     @Test
     public void testDefaultGetName() {
@@ -28,7 +24,7 @@ public class ActionTest {
     public void executeAnActionWithAnAndThen() {
         final Action<String, Double> underTest = anonymousAction(1.0, "Foo").andThen(anonymousAction(2.0, "Bar"));
 
-        assertEquals(new Double(2.0), underTest.execute(ruleContext));
+        assertEquals(Double.parseDouble("2.0"), underTest.execute(ruleContext));
         assertEquals("Foo and then Bar", underTest.toString());
 
         verify(ruleContext).setResult(1.0);

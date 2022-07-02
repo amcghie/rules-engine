@@ -1,26 +1,24 @@
 package au.com.agilepractices.rules.engine.core;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
-import static org.mockito.quality.Strictness.STRICT_STUBS;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
 import au.com.agilepractices.rules.engine.core.action.Action;
 import au.com.agilepractices.rules.engine.core.auditor.RuleAuditor;
 import au.com.agilepractices.rules.engine.core.condition.Condition;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class RuleTest {
 
-    @org.junit.Rule
-    public MockitoRule mockitoRule = MockitoJUnit.rule().strictness(STRICT_STUBS);
     @Mock
     private RuleContext<String, Double> ruleContext;
     @Mock
@@ -34,7 +32,7 @@ public class RuleTest {
 
     private Rule<String, Double> underTest;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         underTest = new Rule<>("Name", condition, action, alternativeAction);
     }
@@ -50,7 +48,7 @@ public class RuleTest {
         underTest.execute(ruleContext);
 
         verify(action).execute(ruleContext);
-        verifyZeroInteractions(alternativeAction);
+        verifyNoInteractions(alternativeAction);
     }
 
     @Test
@@ -64,7 +62,7 @@ public class RuleTest {
         underTest.execute(ruleContext);
 
         verify(alternativeAction).execute(ruleContext);
-        verifyZeroInteractions(action);
+        verifyNoInteractions(action);
     }
 
     @Test

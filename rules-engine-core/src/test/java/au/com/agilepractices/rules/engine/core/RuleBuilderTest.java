@@ -1,51 +1,53 @@
 package au.com.agilepractices.rules.engine.core;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RuleBuilderTest {
 
-    @Rule
-    public final ExpectedException expectedException = ExpectedException.none();
-
     @Test
     public void buildCallbackCannotBeNull() {
-        expectedException.expect(NullPointerException.class);
-        expectedException.expectMessage("Build Callback cannot be null");
-
-        new RuleBuilder<>(null);
+        assertThrows(
+                NullPointerException.class,
+                () -> new RuleBuilder<>(null),
+                "Build Callback cannot be null"
+        );
     }
 
     @Test
     public void conditionCannotBeNull() {
-        expectedException.expect(NullPointerException.class);
-        expectedException.expectMessage("Condition cannot be null");
-
-        new RuleBuilder<>().when(null);
+        assertThrows(
+                NullPointerException.class,
+                () -> new RuleBuilder<>().when(null),
+                "Condition cannot be null"
+        );
     }
 
     @Test
     public void namedConditionCannotBeNull() {
-        expectedException.expect(NullPointerException.class);
-        expectedException.expectMessage("Condition 'Foo' cannot be null");
-
-        new RuleBuilder<>().when("Foo", null);
+        assertThrows(
+                NullPointerException.class,
+                () -> new RuleBuilder<>().when("Foo", null),
+                "Condition 'Foo' cannot be null"
+        );
     }
 
     @Test
     public void actionCannotBeNull() {
-        expectedException.expect(NullPointerException.class);
-        expectedException.expectMessage("Action cannot be null");
-
-        new RuleBuilder<>().then(null);
+        assertThrows(
+                NullPointerException.class,
+                () -> new RuleBuilder<>().then(null),
+                "Action cannot be null"
+        );
     }
 
     @Test
     public void namedActionCannotBeNull() {
-        expectedException.expect(NullPointerException.class);
-        expectedException.expectMessage("Action 'Foo' cannot be null");
-
-        new RuleBuilder<>().then("Foo", null);
+        assertThrows(
+                NullPointerException.class,
+                () -> new RuleBuilder<>().then("Foo", null),
+                "Action 'Foo' cannot be null"
+        );
     }
 }

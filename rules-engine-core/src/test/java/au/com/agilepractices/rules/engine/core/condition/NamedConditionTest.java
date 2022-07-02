@@ -1,10 +1,9 @@
 package au.com.agilepractices.rules.engine.core.condition;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import au.com.agilepractices.rules.engine.core.auditor.RuleAuditor;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NamedConditionTest {
 
@@ -20,7 +19,7 @@ public class NamedConditionTest {
         assertEquals("StubNamedCondition{name='Foo'}", underTest.toString());
     }
 
-    private class StubNamedCondition extends NamedCondition<String> {
+    private static class StubNamedCondition extends NamedCondition<String> {
 
         private StubNamedCondition(String name) {
             super(name);

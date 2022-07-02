@@ -1,25 +1,24 @@
 package au.com.agilepractices.rules.engine.core.auditor;
 
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 
 import au.com.agilepractices.rules.engine.core.Rule;
 import au.com.agilepractices.rules.engine.core.action.Action;
 import au.com.agilepractices.rules.engine.core.condition.Condition;
 
+@ExtendWith(MockitoExtension.class)
 public class LoggingRuleAuditorTest {
 
-    @org.junit.Rule
-    public final MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock
     private Logger logger;
     @Mock

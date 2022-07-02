@@ -1,25 +1,24 @@
 package au.com.agilepractices.rules.engine.core.auditor;
 
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.util.function.Supplier;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
 import au.com.agilepractices.rules.engine.core.Rule;
 import au.com.agilepractices.rules.engine.core.action.Action;
 import au.com.agilepractices.rules.engine.core.condition.Condition;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class NoOpRuleAuditorTest {
 
-    @org.junit.Rule
-    public final MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock
     private Action<Object, Object> action;
     @Mock
@@ -35,7 +34,7 @@ public class NoOpRuleAuditorTest {
     public void auditReturnsRuleParameter() {
         assertSame(underTest, underTest.audit(rule));
 
-        verifyZeroInteractions(rule);
+        verifyNoInteractions(rule);
     }
 
     @Test
@@ -44,7 +43,7 @@ public class NoOpRuleAuditorTest {
 
         underTest.withData("Foo", value);
 
-        verifyZeroInteractions(value);
+        verifyNoInteractions(value);
     }
 
     @Test
@@ -52,14 +51,14 @@ public class NoOpRuleAuditorTest {
 
         underTest.withData("Foo", supplier);
 
-        verifyZeroInteractions(supplier);
+        verifyNoInteractions(supplier);
     }
 
     @Test
     public void withResultReturnsResultParameter() {
         assertTrue(underTest.withResult(condition, true));
 
-        verifyZeroInteractions(condition);
+        verifyNoInteractions(condition);
     }
 
     @Test
